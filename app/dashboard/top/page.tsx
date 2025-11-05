@@ -2,7 +2,10 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import Languages from "../../../options/Languages"
-import MultiSelector from '@/components/MultiSelector';
+import { RippleButton } from "@/components/ui/ripple-button"
+import { useTheme } from 'next-themes';
+import { Switch } from "@/components/ui/switch"
+
 
 type Repo = {
   id: number;
@@ -17,6 +20,8 @@ const page = () => {
     const URL = process.env.NEXT_PUBLIC_API_URL
 
     const languages = Languages;
+
+    const theme = useTheme().theme
 
     
 
@@ -58,9 +63,9 @@ const page = () => {
     
   return (
 
-    <div>
+    <div className='h-[93vh] flex  '>
 
-
+{/* 
     <div>
 
         {languages.map((lang) => (
@@ -75,9 +80,9 @@ const page = () => {
 
     <div>
          <button onClick={() => setBeginnerFriendly(!beginnerFriendly)}>{beginnerFriendly == true? "remove beginner friendly" : "add beginner friendly" }</button>
-    </div>
+    </div> */}
 
-      <div>
+      {/* <div>
 
                 {language ? (
                   <div>
@@ -85,17 +90,62 @@ const page = () => {
                        <p>{language}</p>
                   </div>
                 ) : (<div> <h1>Selected language</h1> <p>None</p></div>)}
-      </div>
+      </div> */}
 
 
 
-      <div>
+      <div className='w-3/4 p-4 overflow-y-scroll  min-h-full'>
         {data.map((item) => (
           <div key={item.id}>
                 <h1>{item.name}</h1>
           </div>
         ))}
       </div>
+
+
+      <div className='border-l h-full  w-1/4'>
+
+              <p className='py-4 px-2 border-b text-[16px] font-medium'>Filters</p>
+
+              <div className='py-4 px-2'>
+
+                <p className='text-sm font-medium mb-4'>Language</p>
+
+                <div className='mt-2 flex gap-2 flex-wrap  w-full'>
+
+                       {languages.map((lang) => (
+                             <div key={lang}>
+                                <button
+                                        className={`text-xs border p-2 rounded-md transition-colors duration-200
+                                          ${language === lang ? theme === "dark" ? "bg-white text-black" : "bg-black text-white" : theme === "dark"  ? "bg-black text-white" : "bg-white text-black"
+                                            }
+                                                ${
+                                                    theme === "dark"
+                                                    ? "hover:text-black hover:bg-white"
+                                                   : "hover:text-white hover:bg-black"
+                                                   }
+                                                     `}
+                                                       onClick={() => setLanguage(lang)}>  {lang}</button>
+
+                             </div>
+                        ))}
+                </div>
+              </div>
+
+
+              <div className='py-4 px-2'>
+
+                <p className='text-sm font-medium mb-4'>Beginner Friendly</p>
+
+                <div className='mt-2 flex gap-2 flex-wrap  w-full'>
+                <Switch />
+
+               
+                      
+                </div>
+              </div>
+      </div>
+
 
     
     </div>

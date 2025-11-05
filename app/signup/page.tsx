@@ -4,6 +4,21 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Meteors } from "@/components/ui/meteors"
+
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+
 export default function SignupPage() {
   const router = useRouter()
   const [formData, setFormData] = useState({
@@ -28,49 +43,67 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+<div className="flex items-center justify-center min-h-screen">
+<Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Sign up to your account</CardTitle>
+        <CardDescription>
+          Enter your email below to sign up to your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={e => setFormData({ ...formData, name: e.target.value })}
-          className="w-full mb-3 border p-2 rounded"
-        />
+      <div className="space-y-2">
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            placeholder="John Doe"
+            type="text"
+            value={formData.name}
+          />
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={e => setFormData({ ...formData, email: e.target.value })}
-          className="w-full mb-3 border p-2 rounded"
-        />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={e => setFormData({ ...formData, password: e.target.value })}
-          className="w-full mb-3 border p-2 rounded"
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-        >
-          Sign Up
-        </button>
-
-        <p className="text-center text-sm mt-3">
-          Already have an account?{' '}
-          <a href="/auth/login" className="text-blue-600 hover:underline">
-            Log in
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            placeholder="john.doe@example.com"
+            type="email"
+            value={formData.email}
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="password">Password</Label>
+           
+          </div>
+          <Input
+            id="password"
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            type="password"
+            value={formData.password}
+          />
+        </div>
+        <Button className="w-full" onClick={handleSubmit}>Sign up</Button>
+        <Button className="w-full" variant="outline">
+          Sign up with Google
+        </Button>
+      </CardContent>
+      <CardFooter className="flex justify-center">
+        <p className="text-muted-foreground text-sm">
+          Already have an account?{" "}
+          <a className="underline" href="/login">
+            Login
           </a>
         </p>
-      </form>
-    </div>
+      </CardFooter>
+    </Card>
+</div>
+
 
 
    

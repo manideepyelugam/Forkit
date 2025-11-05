@@ -69,7 +69,7 @@ const res = await fetch(`${URL}/api/git/${!isRepository ? "issues" : "repos"}?q=
 
 
   return (
-    <div>
+    <div className='h-[88vh] overflow-y-scroll bg-slate-500'>
            <div>
                 
            <MultiSelector

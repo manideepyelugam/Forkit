@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import { Inter } from "next/font/google";
 import { Providers } from "./provider";
+import Sidebar from "@/components/Sidebar";
 
 
 const inter = Inter({
@@ -29,10 +30,12 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <Providers>
-              {children}
+          <div className="flex"> 
+            <main className="flex-1">{children}</main>
+          </div>
         </Providers>
         </ThemeProvider>
-      </body>
+        </body>
     </html>
   );
 }

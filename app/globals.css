@@ -57,7 +57,8 @@
     --chart-5: 340 75% 55%
   }
   .theme {
-    --animate-meteor: meteor 5s linear infinite}
+    --animate-meteor: meteor 5s linear infinite;
+    --animate-rippling: rippling var(--duration) ease-out}
 }
 
 @layer base {
@@ -101,5 +102,13 @@
     opacity: 0;
     }
   }
+  @keyframes rippling {
+  0% {
+    opacity: 1;
+    }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+    }
+  }
 }
-
